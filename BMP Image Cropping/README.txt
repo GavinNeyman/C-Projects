@@ -1,0 +1,1 @@
+This project deals with Cropping BMP images. bmp.c and bmp.h are the main files of interest in this project. test_bmp.c is set up to open purduetrain.bmp, crop it, then save it as a new bmp.
