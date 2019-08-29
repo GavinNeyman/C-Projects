@@ -1,2 +1,2 @@
-# C-Projects
-An assortment of different projects I have written that are based on C.
+# Projects
+An assortment of different projects I have written while attending Purdue University
