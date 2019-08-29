@@ -1,0 +1,29 @@
+Gavin Neyman
+ECE 368
+Project 5 - Packing Rectangels Using Graphs
+
+	This project tasked me with packing a number of rectangles according to their possition in two sequences. In order to complete this task I used two graphs. Each graph was implamented using an adjacency matrix. Both graphs shared the same vertices but used different edges. My first graph was a vertical constraint graph which implamented edges that pointed to rectangles that are positioned above the vertici in the packing. The vertical constraint graph can be used to determine each rectangles 'y' coordinants. Inorder to get these coordinants I first preformed a depth first search and used the DFS sequence generated along with the original VCG to print the 'y' coordinants. The time required in seconds to build the vertical constraint graph, preform a depth first search, and determine the y coordinants for different number of rectangles are as follows:
+
+		Number of rectangles
+	|8	|100	|1000	|2000	|
+-----------------------------------------
+VCG	|0.00	|0.00	|0.54	|4.11	|
+-----------------------------------------
+DFS	|0.00	|0.00	|0.01	|0.04	|
+-----------------------------------------
+Y_coords|0.00	|0.00	|0.01	|0.02	|
+-----------------------------------------
+
+	My second graph was a horizontal constraint graph which implamented edges that from a given rectangles to rectangles that are positioned to its right in the packing order. The horizontal constraint graph can be used to determine each rectangles 'x' coordinants. Inorder to get these coordinants I first preformed a depth first search and used the DFS sequence generated along with the original HCG to print the 'X' coordinants. The time required in seconds to build the horizontal constraint graph, preform a depth first search, and determine the x coordinants for different number of rectangles are as follows:
+
+		Number of rectangles
+	|8	|100	|1000	|2000	|
+-----------------------------------------
+HCG	|0.00	|0.00	|0.47	|3.90	|
+-----------------------------------------
+DFS	|0.00	|0.00	|0.00	|0.03	|
+-----------------------------------------
+X_coords|0.00	|0.00	|0.01	|0.03	|
+-----------------------------------------
+
+	Since each graph is represented by an adjacency matrix the space complexity needed to store each graph is O(V^2). In order to complete this project I used a few helper arrays. These arrays were used for things such as storing sequences and marking which indexes in the adjacency matrix has been visited. Each of these helper arrays have a space complexity of O(V) since they require an element in the array to represent each rectangle. I also an array to store the rectangle numbers along with their widths and heights. This array was set up so that array[i] would equal rectangle 'i+1' and the next two elements in the array would be that rectangle's width and height. Another array used similar to the array of heights and width was the array I used to store the coordinants of the final packing. This array was set up so that array[i] would equal rectangle 'i+1' and the next two elements in the array would be that rectangle's X and Y coordinants respectively.

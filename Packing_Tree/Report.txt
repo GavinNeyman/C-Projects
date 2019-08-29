@@ -1,0 +1,41 @@
+Gavin Neyman
+ECE 368
+Project 3
+
+Time Complexity of constructing the binary search tree from an input file:
+
+	By using the clock() function from the time.h library the run time my program took to load data in from
+the file and construct a binary tree with it was neglagable even for the largest example provided. To further
+explore the time complexity of constructing a binary search tree from an input file I will be looking at two
+functions. The first being Load_From_File, which reads in the cuts from the input file into an array of 
+charaters. If the line read is not a cut it puts a -1 in its spot in the array of characters and adds its given
+rectangle number, width, and height into an array of doubles. Within this function the block of code that would
+contribute most to my time complexity is a while loops which reads one character per iteration and goes until
+the end of the file is reached. The way the function is set up ensures that this while will only run as many
+times as there are '\n' characters in the input file provided the input file is in the same format that the
+examples are in. In such a formate the number of '\n' characters also corresponds to the number of nodes that
+are going to be in my binary search tree. Thus we can determine that this while loop will run with a time
+complexity of O(n). Also in this function is a nested while loop inside the previously mentioned while loop.
+This nested while loop will only run for as many charaters there are in a given rectangles identification
+number. For the given examples the number never exeeds three and contributes a neglagable amount to the time
+complexity. After this inspection I am able to determine my program will have an O(n) time complexity when
+storing data from a file. The other major function in my program that contributes to the time complexity of
+constructing the binary search tree from an input file is the function named Tree_Construct. This function
+takes in the array of chars and array of doubles that where stored after Load_From_File was completed and
+turns them into a binary tree. This function uses a single while loop with the condition being always true.
+It will run until the entire tree is built and since there are n nodes in the tree I can determine that the
+time complexity of this function is O(n) since it has to build each node in the tree. Since both major 
+functions that contribute to the time complexity of constructin the binary search tree from an input file have
+time complexities of O(n) the time complexity of constructing the binary search tree from an input file is 
+2O(n) or in other words simply O(n).
+
+
+Time Complexity of computing the coordinates of the rectangles for the given binary tree:
+
+	Similarly to loading data in and constructing a tree from it, when I used clock() functions from the 
+time.h library with my function to compute the coordinates of rectangles the run time was neglagable even
+for the largest example provided. In order to compute the corrdinates of the rectangles I only used one funtion
+implamented recursively. The terminating condition is if I meet a NULL node I return. If the terminating
+condition is not met I preform recursive calls with the node's left and right children. Given these parameters
+I can determine that ever node would be called once. This gives my function to compute the coordinates of the
+rectangles for a given binary tree a time complexity of O(n).

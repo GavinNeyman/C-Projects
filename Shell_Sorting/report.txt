@@ -1,0 +1,62 @@
+Gavin Neyman
+
+ECE 368 - Data Structures
+
+Project 2
+
+
+
+The purpose of project 2 was to implament shell sort on an array and a linked list using the following sequence
+
+	
+	
+	{h(1) = 1, h(2) = 4, h(3) = 13,...,h(i), h(i+1) = 3*h(i)+1,...,h(p)}
+
+
+
+In order to generate this sequence a while loop was used. This while loop used the variable h which signifies 
+the h in the sequence above. It was initialized to 1 before the loop and for each iteration of the loop it was 
+given the new value of 3 times itself plus one. The loop ran until h was less than a third of the total number
+of values in the unsorted array. Using this method no additional memory is required so the space complexity 
+needed to generate the sequence is O(1). This method has one while loop which gives it a time complexity of 
+O(n). 
+
+
+
+When using shell sort on 15 elements with an array my algorithm loaded the unsorted list and saved the sorted
+list in a negligiable amount of time. The sorting was also done in a negligiable amount of time. The total
+number of comparisons done was 52. When the number of elements increased to 1000 the run time of I/O and
+sorting was still negligible but the number of comparisons increased to 252009. At 10000 elements I/O stayed
+negligible but sorting time could now be recored at 0.15 seconds. The number of comparisons also increased to
+25031930. Once the elements increased to 100000 the I/O time could be recoreded at 0.01 seconds, the sorting
+time was clocked at 14.19 seconds and the number of comparisons totaled to 2406897000. When the number of
+elemenets increased to 1000000 the run time of the algorithm became to great to measure. The amount the time
+required to sort the array increased from 10000 elements to 100000 elements and the fact that 1000000 elements
+takes a great amount of time leads me to conclude that the time complexity of this algorithm is O((nlogn)^2). 
+
+
+
+When using shell sort on 15 elements with a list my algoithm loaded the unsorted array and saved the sorted 
+array in a negligiable amount of time. The sorting was also done in a negligiable amount of time. The total 
+number of comparisons was 210. When the number of elements increased to 1000 the input/output time was still 
+negligiable but the sorting time was now 0.03 seconds. The total number of comparisons was 2997000. When the 
+elements further increased to 10000 the input/output time was once again negligiable. The sorting time was now 
+3.3 seconds. There was 399960000 comparisons. Both 100000 elements and 1000000 elements led to the program 
+timing out. Given that the last two timed out and that difference between the sorting times of 1000 elements
+and 10000 one can deduce that the time complexity of this algorithm is O((nlogn)^2). 
+
+
+
+For sorting with an array bubble sort was used where only neighboring elements were compared. As for sorting 
+with a list insertion sort was used where the list was scanned looking for values that was less than a chosen
+value. The algorithm that utilized arrays sorted smaller problem sizes such as 15 elements and 1000 elements 
+faster than the algorithm that utilized lists. On the other hand the algorithm that utilized lists sorted 10000 
+elements faster than the algorithm that used array and with fewer comparisons. All in all I would prefer the 
+algorithm that uses arrays since it only timed out on one of the tests while the other alorithm times out twice. 
+
+
+
+The space complexity of using shell sort with arrays is only O(n) since you only need enough memory to store
+one array of n integers where n is the number of elements in the unsorted array. To sort an array with a list
+only one linked list was used. This means memory for only n nodes had to be allocated where n is the number
+of elements in the unsorted array. This gives us a space complexity of O(n).
