@@ -1,2 +1,2 @@
 # Projects
-An assortment of different projects I have written while attending Purdue University
+An assortment of different projects I have written that implement a variety of software engineering concepts
