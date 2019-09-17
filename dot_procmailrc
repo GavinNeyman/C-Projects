@@ -1,0 +1,109 @@
+##
+## Homework Number: HW11
+## Name: Gavin Neyman
+## ECN Login: gneyman
+## Due Date: 4/11/2019
+##
+
+SHELL=/bin/sh
+PATH=/usr/local/lib/mh:$PATH
+MAILDIR=$HOME/Mail
+LOGFILE=$HOME/Mail/logfile
+SENDMAIL=/usr/sbin/sendmail
+#VERBOSE=1
+VERBOSE=0
+EOL="
+"
+LOG="$EOL$EOL$EOL"
+LOG="New message log:$EOL"
+LOG=`perl GET_MESSAGE_INDEX`
+LOG="$EOL"
+
+
+## Recipes to catch junkMail 1-50 by ensuring there is only one From: user in a mail message
+##
+## Set the maximum number of '@' in the From field to be 1
+MAXAT=1
+## Count the number of @ symbols and store it in the 'ATCOUNT' variable
+:0
+* ^From:\/.*
+* 1^1 MATCH ?? @
+{ ATCOUNT = $= }
+## Allow only 1 @ symbol in From: otherwise consider it spam
+:0:
+* $ ${ATCOUNT}^0
+* $ -${MAXAT}^0
+spamFilter
+
+## Recipe to catch junkMail 51-63 by trapping based on the subject of the email
+##
+## Filter emails about erectile disfunction, viragra, etc
+:0:
+* ^Subject.*ED
+spamFilter
+:0:
+* ^Subject.*VjaqrRa
+spamFilter
+:0:
+* ^Subject.*viraqrav
+spamFilter
+
+## Filter emails related to college/job scams
+:0:
+* ^Subject.*real.professional.experience
+spamFilter
+:0:
+* ^Subject.*online
+* ^Subject.*degree
+spamFilter
+:0:
+* ^Subject.*university
+* ^Subject.*graduate
+spamFilter
+:0:
+* ^Subject.*College
+* ^Subject.*free
+spamFilter
+:0:
+* ^Subject.*No.need.to.study
+spamFilter
+:0:
+* ^Subject.*Certificate
+* ^Subject.*College
+* ^Subject.*Degree
+* ^Subject.*Professional
+spamFilter
+:0:
+* ^Subject.*Verifiable
+* ^Subject.*Diploma
+spamFilter
+:0:
+* ^Subject.*Partner.with.Hostway
+spamFilter
+
+## Filter emails related to deals and free giveaways
+:0:
+* ^Subject.*buy.cheap
+spamFilter
+:0:
+* ^Subject.*100%.GUARANTEED
+spamFilter
+
+## Recipe to catch junkMail 64-66 by trapping messages on the basis of the content
+##
+## Filer messages that involve casinos and gambling in the body of the message
+:0 B
+* (Company|Casino|casino|FREE|Roulette|Blackjack|Poker)
+{
+	:0:
+	spamFilter
+}
+
+## Recipe to catch junkMail 67-75 by compound rules
+##
+## The content idea must be a multipart/alternative of type text/plain or text/html and have transfer encoding of quote-printable, 8bit or 7bit
+:0 HB:
+* ^Content-Type: multipart/alternative
+* ^Content-Type: text/plain|text/html
+* ^Content-Transfer-Encoding: quoted-printable|8bit|7bit
+spamFilter
